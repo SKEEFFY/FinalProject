@@ -180,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54fcd7b4825f002428536e955b143713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 0}
-  _playerSpawnPosition: {fileID: 0}
+  _playerPrefab: {fileID: 8204014865942867563}
+  _playerSpawnPosition: {fileID: 1978042278}
 --- !u!114 &6447585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15196,6 +15196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 47442930139580459, guid: 14f936be4ae320a4b8cf73f0ec30c644, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 47442930139580461, guid: 14f936be4ae320a4b8cf73f0ec30c644, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -20998,7 +21002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1978042278}
   m_Layer: 0
-  m_Name: PlayerSpawnPoint
+  m_Name: PlayerSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23512,7 +23516,6 @@ GameObject:
   - component: {fileID: 2895974481004778607}
   - component: {fileID: 3379927136991165446}
   - component: {fileID: 1019763522875704903}
-  - component: {fileID: 4035460625101250851}
   - component: {fileID: 3587488999046043544}
   m_Layer: 0
   m_Name: Player
@@ -25027,6 +25030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3206567977379348241}
   - component: {fileID: 3206567977379348242}
+  - component: {fileID: 3206567977379348243}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -25145,6 +25149,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3206567977379348243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206567977379348240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43193ab1ee841b84b98cbe99a4981a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 3206567977379348242}
+  _audioClip: {fileID: 8300000, guid: e1d703e51135d744a978c93ef3feb905, type: 3}
+  _afk: {fileID: 8501663109551797780}
+  _pitchSpeed: 0.5
 --- !u!82 &3206567978497474348
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26199,22 +26219,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4035460625101250851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758769769595451826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43193ab1ee841b84b98cbe99a4981a89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 3206567977379348242}
-  _audioClip: {fileID: 8300000, guid: e1d703e51135d744a978c93ef3feb905, type: 3}
-  _afk: {fileID: 8501663109551797780}
-  _pitchSpeed: 0.5
 --- !u!4 &4060815670614821422
 Transform:
   m_ObjectHideFlags: 0
