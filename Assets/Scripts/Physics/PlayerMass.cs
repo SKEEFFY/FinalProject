@@ -18,9 +18,13 @@ public class PlayerMass : MonoBehaviour
 
     private Collider[] _colliders = new Collider[1];
 
+    private void Update()
+    {
+        GamingGravity();        
+    }
+
     private void FixedUpdate()
     {
-        GamingGravity();
         Physics.OverlapSphereNonAlloc(transform.position - new Vector3(0, _offset, 0), radius, _colliders , layerMask);
 
         if (_colliders[0])
