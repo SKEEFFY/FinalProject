@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
-using System;
-using Unity.VisualScripting;
 
 public class MoveCameraInMainMenu : MonoBehaviour
 {
@@ -16,8 +12,8 @@ public class MoveCameraInMainMenu : MonoBehaviour
 
     [SerializeField] private float _duration;
 
-    private bool[] _isCameraActive = new[] { true, true, true };
-    private int _activeCameraNumber;
+    private int _activeCameraIndex = 1;
+    private int _priorityIndex;
 
 
     private void Awake()
@@ -34,23 +30,31 @@ public class MoveCameraInMainMenu : MonoBehaviour
     private void MoveCameras(CinemachineVirtualCamera[] virtualCamera, Transform[] startPos, Transform[] targetPos)
     {
         var sequence = DOTween.Sequence();
-        for (int i = 0; i < virtualCamera.Length; i++)
+        for (int i = 1; i < virtualCamera.Length; i++)
         {
-            sequence.Join(virtualCamera[i].transform.DOMove(targetPos[i].position, _duration).SetEase(Ease.Linear).OnComplete(NextCamera));
+            sequence.Join(virtualCamera[i].transform.DOMove(targetPos[i].position, _duration)
+                .SetEase(Ease.Linear)
+                .OnComplete(NextCamera));
             sequence.Append(virtualCamera[i].transform.DOMove(startPos[i].position, 1));
+            if(i == virtualCamera.Length-1)
+            {
+                sequence.Join(virtualCamera[i-(virtualCamera.Length-1)].transform.DOMove(targetPos[i - (virtualCamera.Length - 1)].position, _duration)
+                    .SetEase(Ease.Linear)
+                    .OnComplete(NextCamera));
+            }
         }
+        sequence.SetLoops(-1);
     }
 
     private void NextCamera()
     {
-        if (_activeCameraNumber == 3)
+        _activeCameraIndex++;
+        if (_activeCameraIndex == 3)
         {
-            _activeCameraNumber = 0;
+            _activeCameraIndex = 0;
         }
-        _virtualCamera[_activeCameraNumber].gameObject.SetActive(_isCameraActive[_activeCameraNumber] = !_isCameraActive[_activeCameraNumber]);
-        _virtualCamera[0].transform.SetPositionAndRotation(_startCamerasPositions[0].position, _startCamerasPositions[0].rotation);
-        _activeCameraNumber++;
-
+        _priorityIndex++;
+        _virtualCamera[_activeCameraIndex].Priority = _priorityIndex;
     }
 
     public void AddStartCamerasPositions(CinemachineVirtualCamera[] cameras)
