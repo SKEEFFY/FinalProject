@@ -5223,7 +5223,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597413285}
-  m_LocalRotation: {x: 0.0024507681, y: 0.99375284, z: -0.10933034, w: 0.022276137}
+  m_LocalRotation: {x: 0.0024507672, y: 0.99375284, z: -0.10933034, w: 0.02227613}
   m_LocalPosition: {x: -1.7, y: 16.2, z: 4.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6086,7 +6086,7 @@ MonoBehaviour:
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
-    Dutch: 0
+    Dutch: -3
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
@@ -6541,14 +6541,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.9606493, y: -0.027015992, z: 0.25740516, w: 0.100825064}
+  m_LocalRotation: {x: 0.8663923, y: -0.08003368, z: -0.4806453, w: 0.109266534}
   m_LocalPosition: {x: 11.43136, y: 30.336, z: -19.925087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 168.017, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 173.546, y: 58.845, z: 14.197998}
 --- !u!114 &705507996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8920,7 +8920,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967480240}
-  m_LocalRotation: {x: 0.0024507681, y: 0.99375284, z: -0.10933034, w: 0.022276137}
+  m_LocalRotation: {x: 0.0024507672, y: 0.99375284, z: -0.10933034, w: 0.02227613}
   m_LocalPosition: {x: -1.7, y: 16.2, z: 4.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9122,7 +9122,7 @@ GameObject:
   m_Layer: 0
   m_Name: StopPosition_3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12194,13 +12194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f71d79c45248b4884173afe8aa7399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _virtualCameras:
+  _virtualCamera:
   - {fileID: 967480241}
   - {fileID: 661422554}
   - {fileID: 1404359135}
-  _stopPosCam_1: {fileID: 1949678650}
-  _stopPosCam_2: {fileID: 1382623726}
-  _stopPosCam_3: {fileID: 974740578}
+  _targetPosition:
+  - {fileID: 1949678650}
+  - {fileID: 1382623726}
+  - {fileID: 974740578}
   _duration: 2
 --- !u!4 &1236157828
 Transform:
@@ -13187,7 +13188,7 @@ GameObject:
   m_Layer: 0
   m_Name: StopPosition_2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

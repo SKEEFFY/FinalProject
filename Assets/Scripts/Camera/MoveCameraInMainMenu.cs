@@ -4,64 +4,58 @@ using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
 using System;
+using Unity.VisualScripting;
 
 public class MoveCameraInMainMenu : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera[] _virtualCameras;
+    [SerializeField] private CinemachineVirtualCamera[] _virtualCamera;
     private Transform[] _startCamerasPositions;
 
-    [Header("Stop Positions For Cameras")]
-    [SerializeField] private Transform _stopPosCam_1;
-    [SerializeField] private Transform _stopPosCam_2;
-    [SerializeField] private Transform _stopPosCam_3;
+    [Header("Target Positions For Cameras")]
+    [SerializeField] private Transform[] _targetPosition;
+
     [SerializeField] private float _duration;
 
     private bool[] _isCameraActive = new[] { true, true, true };
-
     private int _activeCameraNumber;
+
 
     private void Awake()
     {
-        
-        
+        _startCamerasPositions = new Transform[_virtualCamera.Length];
+        AddStartCamerasPositions(_virtualCamera);
     }
 
     private void Start()
     {
-        _startCamerasPositions = new Transform[_virtualCameras.Length];
-        AddStartCamerasPositions(_virtualCameras);
-
-        Debug.Log("  +" + Convert.ToString(_virtualCameras[_activeCameraNumber].transform.position.x));
-        var sequence = DOTween.Sequence();
-
-        sequence.Append(_virtualCameras[0].transform.DOMove(_stopPosCam_1.position, _duration).SetEase(Ease.Linear).OnComplete(NextCamera));
-        sequence.Append(_virtualCameras[1].transform.DOMove(_stopPosCam_2.position, _duration).SetEase(Ease.Linear).OnComplete(NextCamera));
-        sequence.Append(_virtualCameras[2].transform.DOMove(_stopPosCam_3.position, _duration).SetEase(Ease.Linear).OnComplete(NextCamera).OnKill(NextCamera));
-        
+        MoveCameras(_virtualCamera, _startCamerasPositions, _targetPosition);
     }
 
-    public void UPD()
+    private void MoveCameras(CinemachineVirtualCamera[] virtualCamera, Transform[] startPos, Transform[] targetPos)
     {
-        _virtualCameras[0].transform.position = _startCamerasPositions[0].position;
-        _virtualCameras[0].transform.SetPositionAndRotation(_startCamerasPositions[0].position, _startCamerasPositions[0].rotation);
-        Debug.Log("  +" + Convert.ToString(_virtualCameras[0].transform.position.x));
+        var sequence = DOTween.Sequence();
+        for (int i = 0; i < virtualCamera.Length; i++)
+        {
+            sequence.Join(virtualCamera[i].transform.DOMove(targetPos[i].position, _duration).SetEase(Ease.Linear).OnComplete(NextCamera));
+            sequence.Append(virtualCamera[i].transform.DOMove(startPos[i].position, 1));
+        }
     }
 
     private void NextCamera()
     {
-        if(_activeCameraNumber == 2)
+        if (_activeCameraNumber == 3)
         {
             _activeCameraNumber = 0;
         }
-        _virtualCameras[_activeCameraNumber].gameObject.SetActive(_isCameraActive[_activeCameraNumber] = !_isCameraActive[_activeCameraNumber]);
-        _virtualCameras[_activeCameraNumber].transform.SetPositionAndRotation(_startCamerasPositions[_activeCameraNumber].position, _startCamerasPositions[_activeCameraNumber].rotation);
+        _virtualCamera[_activeCameraNumber].gameObject.SetActive(_isCameraActive[_activeCameraNumber] = !_isCameraActive[_activeCameraNumber]);
+        _virtualCamera[0].transform.SetPositionAndRotation(_startCamerasPositions[0].position, _startCamerasPositions[0].rotation);
         _activeCameraNumber++;
-        
+
     }
 
     public void AddStartCamerasPositions(CinemachineVirtualCamera[] cameras)
     {
-        for(int i = 0; i < cameras.Length; i++)
+        for (int i = 0; i < cameras.Length; i++)
         {
             _startCamerasPositions[i] = cameras[i].transform;
         }
