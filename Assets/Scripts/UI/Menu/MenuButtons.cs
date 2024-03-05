@@ -4,15 +4,15 @@ using UnityEngine.EventSystems;
 
 public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] TMP_Text _startText;
+    [SerializeField] protected TMP_Text _TMP_ProText;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _startText.fontStyle = FontStyles.SmallCaps;
+        _TMP_ProText.fontStyle = FontStyles.SmallCaps;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _startText.fontStyle = FontStyles.Normal;
+        _TMP_ProText.fontStyle = FontStyles.Normal;
     }
 }
