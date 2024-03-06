@@ -4,13 +4,14 @@ using UnityEngine.Events;
 
 public class PlayerControll : MonoBehaviour
 {
-    [SerializeField] private PlayerMass _playerMass;
     [SerializeField] private CharacterController ch_controller;
-    [SerializeField] private float _speedMove = 7f;
-    [SerializeField] private float _runMoveSpeed = 15f;
-    [SerializeField] private float _jumpPower = 10f;
+    [SerializeField] private float _speedMove;
+    [SerializeField] private float _runMoveSpeed;
+    [SerializeField] private float _jumpPower;
     
+    private float _gravityForce;
     private Vector3 _moveVector;
+
     private bool shiftPressed = false;
 
     public static UnityEvent OnPlayJumpSound = new();
@@ -20,6 +21,7 @@ public class PlayerControll : MonoBehaviour
     private void Update()
     {
         CharecterMove();
+        GamingGravity();
         Jump();
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -27,17 +29,19 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
+    public float GetGravityForce() => _gravityForce;
+
     private void CharecterMove()
     {
         float xMove = Input.GetAxis("Horizontal");
         float zMove = Input.GetAxis("Vertical");
 
         _moveVector = transform.right * xMove + transform.forward * zMove;
-        _moveVector.y = _playerMass.GravityForce;
+        _moveVector.y = _gravityForce;
 
         var speed = _speedMove;
 
-        if(shiftPressed)
+        if (shiftPressed)
         {
             speed = _speedMove;
         }
@@ -61,9 +65,20 @@ public class PlayerControll : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && ch_controller.isGrounded)
         {
-            _playerMass.GravityForce = _jumpPower;
-
+            _gravityForce = _jumpPower;
             OnPlayJumpSound.Invoke();
+        }
+    }
+
+    private void GamingGravity()
+    {
+        if (!ch_controller.isGrounded)
+        {
+            _gravityForce -= 9f * Time.deltaTime;
+        }
+        else
+        {
+            _gravityForce = -1f;
         }
     }
 }
