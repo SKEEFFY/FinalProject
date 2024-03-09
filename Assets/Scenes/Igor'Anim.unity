@@ -741,13 +741,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40736103}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b60c66d35cf0594e83db0de1c8fc46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _compassImage: {fileID: 40736106}
-  _player: {fileID: 0}
+  _player: {fileID: 1227139421}
 --- !u!114 &40736109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,12 +755,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40736103}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5dc4576bd6d0e641af1aba04d5a65d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 1227139421}
   _imageOnCompassWidth: {fileID: 40736106}
   imagePrefab: {fileID: 5392923129780618729, guid: fc0402b865155a84ea0e1b86827a09a8, type: 3}
   _maxViewDistance_Transparent: 150
@@ -9240,6 +9240,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3810172513593102577, guid: 45b376ce92b51b644a11ca5ce48804f2, type: 3}
+      propertyPath: radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810172513593102577, guid: 45b376ce92b51b644a11ca5ce48804f2, type: 3}
+      propertyPath: _offset
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45b376ce92b51b644a11ca5ce48804f2, type: 3}
 --- !u!1 &945746549
@@ -13305,6 +13313,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216618280}
   m_Mesh: {fileID: 3284317394355905387, guid: 7292cbbcd062e3440b9895a64d229825, type: 3}
+--- !u!4 &1227139421 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3672625098282935539, guid: 45b376ce92b51b644a11ca5ce48804f2, type: 3}
+  m_PrefabInstance: {fileID: 941501981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1236417264
 GameObject:
   m_ObjectHideFlags: 0
