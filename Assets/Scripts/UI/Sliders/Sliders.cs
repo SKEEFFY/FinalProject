@@ -8,7 +8,7 @@ public class Sliders : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private Slider _staminaSlider;
 
-    private void Start()
+    private void Awake()
     {
         PlayerHealth.UpdateHealthSlider.AddListener(UpdateHealthSlider);
         PlayerStats.UpdateStaminaSlider.AddListener(UpdateStaminaSlider);

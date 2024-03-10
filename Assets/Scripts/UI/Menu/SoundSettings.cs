@@ -8,9 +8,15 @@ using UnityEngine.UI;
 public class SoundSettings : MonoBehaviour
 {
     [SerializeField] private AudioMixer _audioMixer;
+    [Header("Sliders")]
     [SerializeField] private Slider _musicVolumeSlider;
     [SerializeField] private Slider _sfxVolumeSlider;
+    [Header("Icons")]
+    [SerializeField] private Image _musicIcon;
+    [SerializeField] private Image _soundIcon;
 
+    private Color _color;
+     
     private const string MusicVolume = "MusicVolume";
     private const string SFXVolume = "SFXVolume";
     private const string HFXVolume = "HFXVolume";
@@ -20,10 +26,11 @@ public class SoundSettings : MonoBehaviour
     public static UnityEvent CloseSettingMenu = new();
     public static UnityEvent<bool> PlayStopMusic = new();
 
-    private void Start()
+    private void Awake()
     {
         ChangeMusicVolume();
         ChangeSFXVolume();
+        _color = _musicIcon.color;
     }
 
     public void CloseSoundSettings()
@@ -39,12 +46,15 @@ public class SoundSettings : MonoBehaviour
         {
             _isVolume = true;
             PlayStopMusic.Invoke(_isVolume);
+            _musicIcon.color = _color;
+
         }
 
         if(_musicVolumeSlider.value == 0f)
         {
             _isVolume = false;
             PlayStopMusic.Invoke(_isVolume);
+            _musicIcon.color = Color.red;
         }
     }
 
