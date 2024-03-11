@@ -10,6 +10,7 @@ public class GameSettings : MonoBehaviour
     private void Awake()
     {
         MenuButtons.CloseGameSettings.AddListener(CloseSettings);
+        ActivePauseMenuButtons.CloseGameSettings.AddListener(CloseSettings);
     }
 
     public void EnableSetting()

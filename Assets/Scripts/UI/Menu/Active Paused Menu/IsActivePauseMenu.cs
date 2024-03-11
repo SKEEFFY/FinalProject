@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class IsActivePauseMenu : MonoBehaviour
 {

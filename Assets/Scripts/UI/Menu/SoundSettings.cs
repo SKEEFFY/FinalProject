@@ -18,7 +18,7 @@ public class SoundSettings : MonoBehaviour
     private Color _color;
      
     private const string MusicVolume = "MusicVolume";
-    private const string SFXVolume = "SFXVolume";
+    private const string SFXVolume = "MusicInstrumentalVolume";
     private const string HFXVolume = "HFXVolume";
 
     private bool _isVolume = true;
