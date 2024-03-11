@@ -7,6 +7,7 @@ public class SoundsOnPlayer : MonoBehaviour
 
     private void Start()
     {
+        PauseGame.ActivePause.AddListener(StopPlayWalkSound);
         PlayerControll.OnPlayJumpSound.AddListener(PlayJumpSound);
         PlayerControll.OnPlayWalkSound.AddListener(PlayWalkSound);
         PlayerControll.StopPlayWalkSound.AddListener(StopPlayWalkSound);
@@ -31,5 +32,9 @@ public class SoundsOnPlayer : MonoBehaviour
         {
             _walkSound.Stop();
         }
+    }
+    private void StopPlayWalkSound(bool isActive)
+    {
+        _walkSound.Stop();
     }
 }

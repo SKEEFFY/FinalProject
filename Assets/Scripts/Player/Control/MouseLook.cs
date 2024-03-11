@@ -8,6 +8,7 @@ public class MouseLook : MonoBehaviour
 
     private void Start()
     {
+        PauseGame.ActivePause.AddListener(UnlockCursor);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -22,6 +23,18 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         _playerBody.Rotate(Vector3.up * mouseX);
 
+    }
+    
+    private void UnlockCursor(bool isActive)
+    {
+        if(!isActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
 

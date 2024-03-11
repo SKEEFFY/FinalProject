@@ -21,6 +21,7 @@ public class PlayerFight : MonoBehaviour
 
     private void Start()
     {
+        PauseGame.ActivePause.AddListener(DisablePlayerFight);
         PlayerHitBox.PlayerHitEnemy.AddListener(Attack);
         EnemyFight.EnemyAttackPlayer.AddListener(TakeDamage);
     }
@@ -31,6 +32,21 @@ public class PlayerFight : MonoBehaviour
         Block();
         StartCoroutine(Rest());
     }
+
+    private void DisablePlayerFight(bool isActive)
+    {
+        if (isActive)
+        {
+            PlayerFight playerFight = this;
+            playerFight.enabled = !playerFight.enabled;
+        }
+        else
+        {
+            PlayerFight playerFight = this;
+            playerFight.enabled = !playerFight.enabled;
+        }
+    }
+
     private void IsCanAttack()
     {
         if (Input.GetKey(KeyCode.Mouse0) && !IsSpendStaminaCoroutineRuning && _playerStats.StaminaPoints >= _playerStats.SpendStaminaOnAttack)
@@ -54,7 +70,7 @@ public class PlayerFight : MonoBehaviour
             _animator.SetBool(HashAnimatorBoolBlock, true);
             StartCoroutine(WaitAnimation(_animationBlockLength, HashAnimatorBoolBlock));
         }
-        
+
     }
 
     private void TakeDamage(int damage)
@@ -70,12 +86,12 @@ public class PlayerFight : MonoBehaviour
     }
     private void SpendStamina(int damage)
     {
-        _playerStats.StaminaPoints -= damage/2;
+        _playerStats.StaminaPoints -= damage / 2;
     }
 
     private IEnumerator Rest()
     {
-        if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && !_isCorotineStart)
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && !_isCorotineStart)
         {
             _isCorotineStart = true;
             _playerStats.StaminaPoints += _restPoint;
@@ -86,7 +102,7 @@ public class PlayerFight : MonoBehaviour
 
     private IEnumerator SpendStamina(int staminaType, float animationLength)
     {
-        if(_playerStats.StaminaPoints >= staminaType) 
+        if (_playerStats.StaminaPoints >= staminaType)
         {
             IsSpendStaminaCoroutineRuning = true;
             _playerStats.StaminaPoints -= staminaType;

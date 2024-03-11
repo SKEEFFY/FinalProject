@@ -8,7 +8,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float _speedMove;
     [SerializeField] private float _runMoveSpeed;
     [SerializeField] private float _jumpPower;
-    
+
     private float _gravityForce;
     private Vector3 _moveVector;
 
@@ -18,18 +18,37 @@ public class PlayerControll : MonoBehaviour
     public static UnityEvent OnPlayWalkSound = new();
     public static UnityEvent StopPlayWalkSound = new();
 
+    private void Start()
+    {
+        PauseGame.ActivePause.AddListener(DisablePlayerControll);
+    }
+
     private void Update()
     {
         CharecterMove();
         GamingGravity();
         Jump();
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             shiftPressed = !shiftPressed;
         }
     }
 
     public float GetGravityForce() => _gravityForce;
+
+    private void DisablePlayerControll(bool isActive)
+    {
+        if (isActive)
+        {
+            PlayerControll playerControll = this;
+            playerControll.enabled = !playerControll.enabled;
+        }
+        else
+        {
+            PlayerControll playerControll = this;
+            playerControll.enabled = !playerControll.enabled;
+        }
+    }
 
     private void CharecterMove()
     {
@@ -51,7 +70,7 @@ public class PlayerControll : MonoBehaviour
         }
         ch_controller.Move(_moveVector * speed * Time.deltaTime);
 
-        if (Math.Abs(xMove) > 0.2 || Math.Abs(zMove) > 0.2) 
+        if (Math.Abs(xMove) > 0.2 || Math.Abs(zMove) > 0.2)
         {
             OnPlayWalkSound.Invoke();
         }
