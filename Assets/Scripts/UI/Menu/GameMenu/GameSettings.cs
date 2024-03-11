@@ -12,6 +12,11 @@ public class GameSettings : MonoBehaviour
         MenuButtons.CloseGameSettings.AddListener(CloseSettings);
     }
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void EnableSetting()
     {
         gameObject.SetActive(true);
